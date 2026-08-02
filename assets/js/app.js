@@ -14,10 +14,78 @@
     return many;
   };
 
-  /* ───────── шкала объёма ───────── */
+  /* ───────── схема ресничного ряда ─────────
+     Рисуем настоящий смысл цифры: на каждую свою ресницу вешаем count наращённых.
+     Дробный объём — чередование: 1,5D это то одна, то две. */
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const LID = { x0: 26, y0: 322, x1: 150, y1: 222, x2: 250, y2: 222, x3: 374, y3: 322 };
+
+  const bezier = (t) => {
+    const u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t;
+    return {
+      x: a * LID.x0 + b * LID.x1 + c * LID.x2 + d * LID.x3,
+      y: a * LID.y0 + b * LID.y1 + c * LID.y2 + d * LID.y3,
+    };
+  };
+
+  /* ресница = сужающийся к кончику изогнутый лепесток */
+  const lashPath = (x, y, deg, len, curl, w) => {
+    const a = (deg * Math.PI) / 180;
+    const p = a - Math.PI / 2;
+    const tx = x + Math.cos(a) * len, ty = y + Math.sin(a) * len;
+    const mx = x + Math.cos(a) * len * 0.55 + Math.cos(p) * curl;
+    const my = y + Math.sin(a) * len * 0.55 + Math.sin(p) * curl;
+    const nx = (Math.cos(p) * w) / 2, ny = (Math.sin(p) * w) / 2;
+    return `M${(x + nx).toFixed(1)},${(y + ny).toFixed(1)} Q${(mx + nx * 0.35).toFixed(1)},${(my + ny * 0.35).toFixed(1)} ${tx.toFixed(1)},${ty.toFixed(1)} Q${(mx - nx * 0.35).toFixed(1)},${(my - ny * 0.35).toFixed(1)} ${(x - nx).toFixed(1)},${(y - ny).toFixed(1)} Z`;
+  };
+
+  function drawLashes(count) {
+    const svg = $('#scaleSvg');
+    while (svg.lastChild && svg.lastChild.nodeName !== 'title') svg.removeChild(svg.lastChild);
+
+    const add = (d, cls) => {
+      const p = document.createElementNS(SVG_NS, 'path');
+      p.setAttribute('d', d);
+      p.setAttribute('class', cls);
+      svg.appendChild(p);
+      return p;
+    };
+
+    /* линия века */
+    add(`M${LID.x0},${LID.y0} C${LID.x1},${LID.y1} ${LID.x2},${LID.y2} ${LID.x3},${LID.y3} L${LID.x3},${LID.y3 + 6} C${LID.x2},${LID.y2 + 9} ${LID.x1},${LID.y1 + 9} ${LID.x0},${LID.y0 + 6} Z`, 'lid');
+
+    const N = 25;
+    const low = Math.floor(count), high = Math.ceil(count);
+    let step = 0;
+
+    for (let i = 0; i < N; i++) {
+      const t = 0.045 + (i / (N - 1)) * 0.91;
+      const { x, y } = bezier(t);
+      /* к внешнему углу ресницы длиннее и наклонены сильнее */
+      const deg = -116 + t * 64;
+      const len = 66 + 62 * Math.sin(Math.PI * Math.min(1, t * 0.9 + 0.1));
+      const curl = len * 0.19;
+
+      /* своя ресница — короче и бледнее, лежит под наращёнными */
+      add(lashPath(x, y, deg, len * 0.78, curl * 0.8, 3.4), 'own');
+
+      /* сколько вешаем на эту ресницу */
+      let k = low;
+      if (low !== high) { k = step % 2 === 0 ? low : high; step++; }
+
+      const spread = Math.min(4 + k * 4.6, 26);
+      for (let j = 0; j < k; j++) {
+        const off = k === 1 ? 0 : (j / (k - 1) - 0.5) * spread;
+        const p = add(
+          lashPath(x, y, deg + off, len * (1.03 + Math.abs(off) / 260), curl, Math.max(1.15, 3.2 / Math.sqrt(k))),
+          'ext'
+        );
+        p.style.setProperty('--i', String(i * 5 + j));
+      }
+    }
+  }
+
   const range = $('#scaleRange');
-  const stage = $('.scale__stage');
-  const img = $('#scaleImg');
   const ticks = $('#scaleTicks');
 
   D.volumes.forEach((v, i) => {
@@ -38,7 +106,6 @@
   function paint(i) {
     if (i === current) return;
     const v = D.volumes[i];
-    const first = current === -1;
     current = i;
 
     $('#scaleName').textContent = v.name;
@@ -51,25 +118,18 @@
     $('#scaleTime').textContent = v.time;
     $$('#scaleTicks li').forEach((li, n) => li.classList.toggle('is-on', n === i));
 
-    const next = photo(v.photo, 1200);
-    if (first) { img.src = next; return; }
-    const pre = new Image();
-    pre.onload = () => {
-      img.src = next;
-      img.alt = `Наращивание ресниц, объём ${v.label} — работа KOKO Studio`;
-      stage.classList.remove('is-swap');
-    };
-    stage.classList.add('is-swap');
-    pre.src = next;
+    const c = v.count;
+    $('#scaleRatio').textContent =
+      Number.isInteger(c)
+        ? `1 своя ресница → ${c} ${plural(c, 'наращённая', 'наращённых', 'наращённых')}`
+        : `1 своя ресница → то ${Math.floor(c)}, то ${Math.ceil(c)}`;
+    $('#scaleSvg').querySelector('title').textContent =
+      `Схема наращивания ${v.label}: на одну свою ресницу — ${c} наращённых`;
+    drawLashes(c);
   }
 
   range.addEventListener('input', () => paint(+range.value));
   paint(+range.value);
-
-  /* предзагрузка соседних кадров, чтобы шкала не мигала */
-  requestAnimationFrame(() => {
-    setTimeout(() => D.volumes.forEach((v) => { new Image().src = photo(v.photo, 1200); }), 1200);
-  });
 
   /* ───────── галерея ───────── */
   const grid = $('#grid');
