@@ -26,7 +26,6 @@ check_yclients.mjs
 shot.mjs
 shot2.mjs
 shot3.mjs
-qa.mjs
-qa_http.mjs
+qa*.mjs
 
 node_modules/
