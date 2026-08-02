@@ -23,9 +23,8 @@ download_photos.mjs
 optimize.mjs
 contactsheet.mjs
 check_yclients.mjs
-shot.mjs
-shot2.mjs
-shot3.mjs
+shot*.mjs
+scale_all.html
 qa*.mjs
 
 node_modules/
