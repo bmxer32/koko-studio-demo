@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Предложение для KOKO Studio — Narodniy Team</title>
+<meta name="description" content="Бесплатное демо сайта для KOKO Studio и AI-ассистент, который отвечает клиентам и записывает их 24/7.">
+<meta name="theme-color" content="#14100F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314100F'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' fill='%23E4BE84' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14100F; --paper:#EDEBE9; --dim:#8E8783; --line:#332C2A;
+  --glow:#E4BE84; --ember:#C96E78;
+  --f-d:"Prata",Georgia,serif; --f-b:"Onest",system-ui,sans-serif; --f-m:"JetBrains Mono",monospace;
+  --pad:20px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font:400 16px/1.6 var(--f-b);-webkit-text-size-adjust:100%}
+h1,h2,h3{margin:0;font-weight:400;font-family:var(--f-d);letter-spacing:-.01em}
+p{margin:0}ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 var(--pad)}
+.sec{padding:60px 0;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0}
+.kicker{font:500 11px/1.4 var(--f-m);letter-spacing:.22em;text-transform:uppercase;color:var(--glow)}
+h2{font-size:clamp(28px,7vw,42px);line-height:1.05;margin-top:14px}
+.lede{margin-top:18px;color:var(--dim);max-width:56ch;font-size:16px}
+
+/* шапка */
+.top{padding:18px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.who{font:500 12px/1 var(--f-m);letter-spacing:.16em;text-transform:uppercase}
+.who i{font-style:normal;color:var(--dim)}
+.tocta{font:500 12px/1 var(--f-m);letter-spacing:.1em;color:var(--glow);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+/* герой */
+.hero{padding:52px 0 60px}
+.hero h1{font-size:clamp(38px,10.5vw,68px);line-height:1.0;margin-top:16px}
+.hero h1 em{font-style:normal;color:var(--glow)}
+.hero .lede{font-size:17px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:50px;padding:0 22px;border:1px solid var(--paper);
+  font:500 14px/1 var(--f-b);text-decoration:none;transition:.18s background,.18s color;
+}
+.btn--fill{background:var(--paper);color:var(--ink)}
+.btn--fill:hover{background:var(--glow);border-color:var(--glow)}
+.btn--line{border-color:var(--line);color:var(--paper)}
+.btn--line:hover{border-color:var(--paper)}
+
+/* что внутри */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:32px;border:1px solid var(--line)}
+.stat{background:var(--ink);padding:20px 18px}
+.stat b{display:block;font-family:var(--f-d);font-size:32px;font-weight:400;line-height:1;color:var(--glow)}
+.stat span{display:block;margin-top:8px;font-size:13px;color:var(--dim);line-height:1.45}
+
+.did{margin-top:34px}
+.did li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:15px 0;border-top:1px solid var(--line);align-items:baseline}
+.did li:last-child{border-bottom:1px solid var(--line)}
+.did em{font:500 11px/1 var(--f-m);font-style:normal;color:var(--dim);letter-spacing:.1em}
+.did b{font-weight:500}
+.did p{margin-top:5px;font-size:14.5px;color:var(--dim)}
+
+/* проблема → решение */
+.pair{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:32px}
+.pair > div{background:var(--ink);padding:24px 20px}
+.pair h3{font-size:20px}
+.pair .tag{font:500 10.5px/1 var(--f-m);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.pair .tag--good{color:var(--glow)}
+.pair p{margin-top:12px;font-size:15px;color:var(--dim)}
+.pair h3{margin-top:12px}
+
+/* умеет */
+.can{margin-top:30px;display:grid;gap:12px}
+.can li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:15px;color:var(--dim)}
+.can li::before{content:"→";color:var(--glow);font-family:var(--f-m)}
+.can b{color:var(--paper);font-weight:500}
+
+/* тарифы */
+.plans{display:grid;gap:12px;margin-top:32px}
+.plan{border:1px solid var(--line);padding:22px 20px;display:flex;flex-direction:column}
+.plan--pick{border-color:var(--glow)}
+.plan__name{font:500 11px/1 var(--f-m);letter-spacing:.2em;text-transform:uppercase}
+.plan--pick .plan__name{color:var(--glow)}
+.plan__cost{margin-top:16px;font-family:var(--f-d);font-size:34px;line-height:1}
+.plan__cost small{font-family:var(--f-m);font-size:12px;color:var(--dim);letter-spacing:.06em}
+.plan__what{margin-top:14px;font-size:14px;color:var(--dim);line-height:1.55}
+.plan__badge{margin-top:14px;align-self:flex-start;font:500 10px/1 var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:var(--glow);padding:6px 9px}
+.fine{margin-top:20px;font-size:13px;color:var(--dim);border-left:1px solid var(--line);padding-left:14px}
+
+/* прочее */
+.also{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.also div{background:var(--ink);padding:18px 20px}
+.also b{display:block;font-weight:500}
+.also span{display:block;margin-top:5px;font-size:13.5px;color:var(--dim)}
+
+/* контакты */
+.end{padding:64px 0 76px}
+.end h2{max-width:16ch}
+.contacts{margin-top:28px;display:grid;gap:12px}
+.contacts a{display:flex;justify-content:space-between;gap:14px;padding:15px 0;border-top:1px solid var(--line);text-decoration:none;font-size:16px}
+.contacts a:last-child{border-bottom:1px solid var(--line)}
+.contacts span{font:400 13px/1.5 var(--f-m);color:var(--dim)}
+.foot{padding:22px 0 34px;font:400 11.5px/1.6 var(--f-m);color:var(--dim);border-top:1px solid var(--line)}
+
+@media (min-width:720px){
+  :root{--pad:40px}
+  .sec{padding:80px 0}
+  .hero{padding:70px 0 80px}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .pair{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:repeat(3,1fr)}
+  .also{grid-template-columns:repeat(3,1fr)}
+  .can{grid-template-columns:1fr 1fr;gap:14px 30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="who">Narodniy Team <i>→ KOKO Studio</i></p>
+    <a class="tocta" href="#contacts">Связаться</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero wrap">
+  <p class="kicker">Бесплатное демо · без обязательств</p>
+  <h1>Мы собрали вам сайт.<br><em>Посмотрите.</em></h1>
+  <p class="lede">
+    Взяли всё из вашей карточки в Яндекс Бизнесе и из YCLIENTS: реальные фото, реальный прайс,
+    настоящие отзывы. Ничего не придумывали и не генерировали. Сайт уже работает — можно открыть с телефона.
+  </p>
+  <div class="acts">
+    <a class="btn btn--fill" href="index.html">Открыть сайт</a>
+    <a class="btn btn--line" href="#assistant">Что дальше</a>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">Что в нём есть</p>
+    <h2>Всё ваше, ничего лишнего</h2>
+
+    <div class="stats">
+      <div class="stat"><b>70</b><span>ваших фотографий<br>в галерее с фильтрами</span></div>
+      <div class="stat"><b>33</b><span>услуги с ценами<br>и длительностью</span></div>
+      <div class="stat"><b>10</b><span>отзывов с Яндекс Карт<br>дословно</span></div>
+      <div class="stat"><b>1</b><span>кнопка записи —<br>ваш YCLIENTS внутри</span></div>
+    </div>
+
+    <ol class="did">
+      <li><em>01</em><div>
+        <b>Шкала объёма на первом экране</b>
+        <p>Клиентка двигает ползунок от 1D до 5D и сразу видит вашу работу, цену и сколько это займёт. Это тот самый вопрос, который сейчас каждая задаёт в личку.</p>
+      </div></li>
+      <li><em>02</em><div>
+        <b>Онлайн-запись прямо на сайте</b>
+        <p>Кнопка «Записаться» открывает ваш YCLIENTS: услуга, мастер, свободное время. Не переписка — запись. Telegram и WhatsApp остались на случай, если человеку удобнее написать.</p>
+      </div></li>
+      <li><em>03</em><div>
+        <b>Прайс целиком</b>
+        <p>Ресницы, дополнительные услуги, филлеры, косметология. Видно, за что разница между ведущим мастером и топ-мастером.</p>
+      </div></li>
+      <li><em>04</em><div>
+        <b>Как вас найти</b>
+        <p>Адрес, 640 метров от Войковской, карта и три фото ориентиров — двор, лестница, дверь. Меньше звонков «я стою, куда идти».</p>
+      </div></li>
+      <li><em>05</em><div>
+        <b>Сделан под телефон</b>
+        <p>Сначала под телефон, потом под компьютер — почти все клиенты приходят с Яндекс Карт с мобильного. Внизу экрана всегда видна кнопка записи.</p>
+      </div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="assistant">
+  <div class="wrap">
+    <p class="kicker">Что можно сделать дальше</p>
+    <h2>Сайт приводит людей. Отвечать всё равно приходится вам</h2>
+    <p class="lede">
+      Судя по вашим отзывам, записываются в основном через Telegram. Значит, каждое «сколько стоит 3D»,
+      «есть окно в субботу», «а сколько носится» кто-то читает и печатает руками — часто прямо во время процедуры.
+    </p>
+
+    <div class="pair">
+      <div>
+        <p class="tag">Сейчас</p>
+        <h3>Мастер отвечает между клиентами</h3>
+        <p>Сообщение в 22:40 читают утром. Пока отвечают, человек записался в студию, где ответили за минуту.</p>
+      </div>
+      <div>
+        <p class="tag tag--good">С ассистентом</p>
+        <h3>Отвечает бот, записывает в YCLIENTS</h3>
+        <p>Отвечает по вашему прайсу и вашим правилам, не выдумывает цены. Сложное — сразу передаёт мастеру.</p>
+      </div>
+    </div>
+
+    <ul class="can">
+      <li><span><b>Работает там, где к вам пишут:</b> Telegram, WhatsApp, сайт, Авито.</span></li>
+      <li><span><b>Записывает в календарь или CRM</b> — не «оставьте номер», а конкретное время.</span></li>
+      <li><span><b>Отвечает только по вашим данным</b> — прайс, услуги, адрес, правила. Без фантазий.</span></li>
+      <li><span><b>Передаёт живому человеку</b>, когда вопрос выходит за рамки.</span></li>
+      <li><span><b>Принимает заказы и оплату</b>, если нужно — сертификаты, предоплата.</span></li>
+      <li><span><b>Присылает отчёт за день:</b> сколько написали, сколько записались.</span></li>
+    </ul>
+
+    <div class="plans">
+      <div class="plan">
+        <p class="plan__name">Старт</p>
+        <p class="plan__cost">5 900 ₽<br><small>в месяц</small></p>
+        <p class="plan__what">Один канал, до 500 диалогов. Хватит, чтобы закрыть Telegram.</p>
+      </div>
+      <div class="plan plan--pick">
+        <p class="plan__name">Бизнес</p>
+        <p class="plan__cost">9 900 ₽<br><small>в месяц</small></p>
+        <p class="plan__what">Три канала, до 2 000 диалогов. Telegram, WhatsApp и сайт вместе.</p>
+        <p class="plan__badge">Под вашу задачу</p>
+      </div>
+      <div class="plan">
+        <p class="plan__name">Максимум</p>
+        <p class="plan__cost">15 900 ₽<br><small>в месяц</small></p>
+        <p class="plan__what">Все каналы, без лимита по диалогам.</p>
+      </div>
+    </div>
+    <p class="fine">Запуск и настройка — 3 000 ₽ один раз. Демо на ваших услугах и ценах — бесплатно: посмотрите, как он отвечает, прежде чем что-то решать.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">Ещё умеем</p>
+    <h2>Не только боты</h2>
+    <div class="also">
+      <div><b>Сайты</b><span>Как этот — с записью, прайсом и галереей. Свой домен, хостинг, правки.</span></div>
+      <div><b>Мобильные приложения</b><span>Если дойдёте до сети студий и своей программы лояльности.</span></div>
+      <div><b>Программы для ПК</b><span>Учёт, выгрузки, всё, что руками считается в таблице.</span></div>
+    </div>
+    <p class="fine">7 лет на рынке, больше 120 проектов. ИП Скворцов М. А., ИНН 581304172576.</p>
+  </div>
+</section>
+
+<section class="end wrap" id="contacts">
+  <p class="kicker">Дальше</p>
+  <h2>Скажите, что поправить — поправим</h2>
+  <p class="lede">Сайт ваш, платить за просмотр не нужно. Хотите другой текст, другие фото на первом экране, добавить перманент в прайс — напишите, сделаем. Отвечаем в течение часа.</p>
+  <div class="contacts">
+    <a href="https://t.me/webe9" target="_blank" rel="noopener">Telegram <span>@webe9</span></a>
+    <a href="tel:+79309502454">Позвонить <span>+7 930 950-24-54</span></a>
+    <a href="mailto:v71072587@gmail.com">Почта <span>v71072587@gmail.com</span></a>
+  </div>
+  <div class="acts">
+    <a class="btn btn--fill" href="index.html">Ещё раз посмотреть сайт</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    Narodniy Team · демо для KOKO Studio · фотографии, цены и отзывы взяты из открытых материалов студии
+    и принадлежат ей. Тарифы действуют на дату отправки предложения.
+  </div>
+</footer>
+
+</body>
+</html>

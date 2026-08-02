@@ -1,0 +1,32 @@
+# оригиналы фото в исходном разрешении — в прод не нужны (28 МБ)
+assets/img/
+
+# рабочие артефакты сбора данных и проверок
+*.png
+sheet*.html
+raw_index.html
+rendered.html
+rendered.txt
+api.json
+catalog.json
+images.json
+photo_manifest.json
+photo_dims.json
+yclients_api.json
+yclients_services.txt
+yclients_masters.txt
+yclients_master_imgs.json
+scrape.mjs
+scrape2.mjs
+scrape_yclients.mjs
+download_photos.mjs
+optimize.mjs
+contactsheet.mjs
+check_yclients.mjs
+shot.mjs
+shot2.mjs
+shot3.mjs
+qa.mjs
+qa_http.mjs
+
+node_modules/
